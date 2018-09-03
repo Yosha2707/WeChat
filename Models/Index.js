@@ -3,13 +3,19 @@ var con = mysql.createConnection({
     host: '70.32.28.66',
     user: 'rsspl_estate',
     password: 'swap@123',
-    database: 'rsspl_estate'
-
+    database: 'rsspl_estate',
+    connectionLimit : 100,
+    waitForConnections : true,
+    queueLimit :0,
+    debug    :  true,
+    wait_timeout : 28800,
+    connect_timeout :10
 });
 
 
 
-class Operations {
+
+class OP {
     constructor() {}
 
     SelectAsync(Query) {
