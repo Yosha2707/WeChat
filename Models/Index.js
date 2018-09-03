@@ -2,7 +2,7 @@ var mysql = require('mysql');
 var con = mysql.createConnection({
     host: '70.32.28.66',
     user: 'rssplnet_estate',
-    password: 'Swap@123',
+    password: 'swap@123',
     database: 'rsspl_estate'
 
 });
