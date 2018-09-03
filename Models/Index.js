@@ -3,7 +3,7 @@ var con = mysql.createConnection({
     host: '70.32.28.66',
     user: 'rsspl_estate',
     password: 'swap@123',
-    database: 'rsspl_estate',
+    database: 'rssplnet_estate',
     connectionLimit : 100,
     waitForConnections : true,
     queueLimit :0,
@@ -15,7 +15,7 @@ var con = mysql.createConnection({
 
 
 
-class OP {
+class Operations {
     constructor() {}
 
     SelectAsync(Query) {
