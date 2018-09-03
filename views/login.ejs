@@ -1,0 +1,136 @@
+<!-- <!DOCTYPE html> -->
+<html lang="en">
+
+<head>
+    <title>We Chat</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <!-- <link rel="icon" type="image/svg" sizes="16x16" href="/images/SaferWatch-Icon_color.svg"> -->
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="/images/favicon.png" type="image/x-icon">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+        <div class="text-center mt-5">
+            <img src="/images/SaferWatch-Logo.png" alt="homepage" width="250" class="dark-logo">
+        </div>
+    </div>
+    <div class="mt-5" id="loginModal">
+        <div class="modal-dialog">
+            <form method="POST" name="userRegForm" action="/login" onsubmit="return validateForm(this);">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">User Login</h4>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="ti-user"></i>
+                                </div>
+                                <input type="email" class="form-control" id="login_email" name="login_email" placeholder="Email Address"
+                                autocomplete="false" required pattern="^.{0,64}$" title="Enter an email address with a maximum of 64 characters."
+                                 oninput="validateEmail(this);" onchange="validateEmail(this);">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="ti-lock"></i>
+                                </div>
+                                <input type="password" class="form-control" name="login_password" id="login_password" placeholder="Password" 
+                                autocomplete="false"
+                                 oninput="validatePassword(this);" onchange="validatePassword(this);"/>
+                            </div>
+                        </div>
+                        <!-- <div class="form-group">
+                            <div class="g-recaptcha" data-sitekey="6Lc78GgUAAAAAHyV-eJelDIrCi-o5SwGI685maVD"></div>
+                        </div> -->
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-theme waves-effect waves-light m-r-10">Login</button>
+                    </div>
+                </div>
+            </form>
+            <div class="text-center">
+                <a href="/forgot-password">Forgot Password</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        var emailPattern = new RegExp('^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$');
+        var email = document.forms['userRegForm'].login_email;
+        var password = document.forms['userRegForm'].login_password;
+        $('input[required]').popover({
+        placement: 'bottom',
+        container: 'body',
+        trigger: 'manual',
+        selector: 'true',
+        content: function() {
+            return $(this).attr('title');
+        },
+        template: '<div class="popover" role="tooltip"><div class="arrow"></div><div class="popover-content"></div></div>'
+    }).focus(function() {
+        $(this).popover('hide');
+    });
+    function validateForm(form) {
+	
+	// Email validation.
+  if (!emailPattern.test(email.value) || !emailLengthPattern.test(email.value)) {
+  	$(email).popover('show');
+    	return false;
+    } else {
+		$(email).addClass('valid')
+	}
+	
+	// Password validation.
+	if (!passwordPattern.test(password.value)) {
+		$(password).popover('show');
+		return false;
+	}
+	return false;
+}
+
+function validateEmail(input) {
+	if (emailPattern.test(input.value) && emailLengthPattern.test(input.value)) {
+		$(input).addClass('valid')
+	} else {
+		$(input).removeClass('valid');
+	}
+}
+function validateRequired(input) {
+	
+	if (input.setCustomValidity) {
+		input.setCustomValidity('');
+		
+		if (input.validity && !input.validity.valid) {
+			input.setCustomValidity(input.title);
+		}
+	}
+	
+	if (input.value.length > 0) {
+  	$(input).addClass('valid');
+  } else {
+		$(input).removeClass('valid');
+	}
+}
+
+    </script>
+</body>
+</html>
